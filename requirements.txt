@@ -1,0 +1,17 @@
+Flask
+beautifulsoup4
+openai
+requests
+pytesseract
+Pillow
+sentence-transformers
+markdown
+pandas
+duckdb
+numpy
+torch
+scikit-learn
+tqdm
+regex
+lxml
+glob2

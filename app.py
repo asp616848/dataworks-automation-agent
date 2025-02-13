@@ -17,12 +17,18 @@ from sentence_transformers import SentenceTransformer, util
 import markdown
 import csv
 import pandas as pd
+import os
 
 app = Flask(__name__)  # Ensure this is present
 
 
+
+API_TOKEN = os.environ.get("AIPROXY_TOKEN")
+
+
 def safe_path(path):
     """ Ensure the path is within /data """
+    
     abs_path = os.path.abspath(path)
     if not abs_path.startswith("/data"):
         raise PermissionError("Access outside /data is not allowed")
@@ -39,7 +45,7 @@ def execute_task(task_description):
 
         command = response["choices"][0]["message"]["content"]
         return process_command(command)
-    except openai.error.OpenAIError as e:
+    except openai.OpenAIError as e:
         return str(e), 400
     except Exception as e:
         return str(e), 500
